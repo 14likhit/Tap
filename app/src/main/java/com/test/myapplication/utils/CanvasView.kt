@@ -23,7 +23,7 @@ class CanvasView @JvmOverloads constructor(
 
     private var shapeToDraw = 0
     private val paint = Paint()
-    private val radius = 100F
+    private val radius = 100
     private val length = 100
     private val random = Random()
 
@@ -45,10 +45,14 @@ class CanvasView @JvmOverloads constructor(
     }
 
     private fun drawRandomCircleOnCanvas(canvas: Canvas?) {
-        val x = random.nextInt(width).toFloat()
-        val y = random.nextInt(height).toFloat()
+        val xleftMin = radius
+        val xRightMin = width - radius
+        val ybottom = radius
+        val yTopMin = height - radius
+        val x = (xleftMin..xRightMin).random().toFloat()
+        val y = (ybottom..yTopMin).random().toFloat()
         val path = Path()
-        path.addCircle(x, y, radius, Path.Direction.CW)
+        path.addCircle(x, y, radius.toFloat(), Path.Direction.CW)
         if (!checkIfIntersect(path)) {
             pathList.add(path)
             drawPaths(canvas)
@@ -58,8 +62,12 @@ class CanvasView @JvmOverloads constructor(
     }
 
     private fun drawRandomSquareOnCanvas(canvas: Canvas?) {
-        val x = random.nextInt(width).toFloat()
-        val y = random.nextInt(height).toFloat()
+        val xleftMin = 0
+        val xRightMin = width - length
+        val ybottom = 0
+        val yTopMin = height - length
+        val x = (xleftMin..xRightMin).random().toFloat()
+        val y = (ybottom..yTopMin).random().toFloat()
         val path = Path()
         val min = min(x, y)
         path.addRect(min, min, min + length, min + length, Path.Direction.CW)
