@@ -11,20 +11,27 @@
         android:id="@+id/homeRootLL"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:orientation="vertical"
         tools:context=".ui.home.HomeActivity">
+
+        <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar_default"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/task1Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="@string/task_1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/task2Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:text="@string/task_2" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

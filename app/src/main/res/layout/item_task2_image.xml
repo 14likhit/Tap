@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/task2ImageLL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_16dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/task2IV"
+            android:layout_width="@dimen/dimen_150dp"
+            android:layout_height="@dimen/dimen_150dp"
+            app:srcCompat="@drawable/ic_image_placeholder"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>
