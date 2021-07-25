@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil
 import com.test.myapplication.R
 import com.test.myapplication.base.BaseActivity
 import com.test.myapplication.databinding.ActivityTask1Binding
+import com.test.myapplication.utils.OnCollisionListener
 
 class Task1Activity : BaseActivity() {
 
@@ -16,6 +17,11 @@ class Task1Activity : BaseActivity() {
 
         setupToolbar(getString(R.string.task_1),true)
 
+        setView()
+
+    }
+
+    private fun setView() {
         dataBinding.circleBtn.setOnClickListener {
             dataBinding.canvasView.drawCircle()
         }
@@ -27,5 +33,11 @@ class Task1Activity : BaseActivity() {
         dataBinding.undoBtn.setOnClickListener {
             dataBinding.canvasView.undo()
         }
+
+        dataBinding.canvasView.setOnCollisionListener(object : OnCollisionListener{
+            override fun onCollision() {
+                showMessage("Collision Happened! Try Again")
+            }
+        })
     }
 }

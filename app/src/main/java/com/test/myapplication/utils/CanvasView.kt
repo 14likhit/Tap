@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.Region
 import android.util.AttributeSet
 import android.view.View
 import java.util.*
@@ -26,6 +27,8 @@ class CanvasView @JvmOverloads constructor(
     private val length = 100
     private val random = Random()
 
+    private var onCollisionListener: OnCollisionListener? = null
+
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         when (shapeToDraw) {
@@ -46,8 +49,12 @@ class CanvasView @JvmOverloads constructor(
         val y = random.nextInt(height).toFloat()
         val path = Path()
         path.addCircle(x, y, radius, Path.Direction.CW)
-        pathList.add(path)
-        drawPaths(canvas)
+        if (!checkIfIntersect(path)) {
+            pathList.add(path)
+            drawPaths(canvas)
+        } else {
+            drawPaths(canvas)
+        }
     }
 
     private fun drawRandomSquareOnCanvas(canvas: Canvas?) {
@@ -56,15 +63,25 @@ class CanvasView @JvmOverloads constructor(
         val path = Path()
         val min = min(x, y)
         path.addRect(min, min, min + length, min + length, Path.Direction.CW)
-        pathList.add(path)
-        drawPaths(canvas)
+        if (!checkIfIntersect(path)) {
+            pathList.add(path)
+            drawPaths(canvas)
+        } else {
+            drawPaths(canvas)
+        }
     }
 
-    private fun checkIfIntersect(inputPath: Path): Boolean{
+    private fun checkIfIntersect(inputPath: Path): Boolean {
+        val clip = Region(0, 0, width, height)
+        val i1 = Region()
+        i1.setPath(inputPath, clip)
         var isIntersecting = false
-        for(path in pathList){
-            if(inputPath.op(path,Path.Op.INTERSECT)){
+        for (path in pathList) {
+            val r1 = Region()
+            r1.setPath(path, clip)
+            if (!r1.quickReject(i1) && r1.op(i1, Region.Op.INTERSECT)) {
                 isIntersecting = true
+                onCollisionListener?.onCollision()
                 break
             }
         }
@@ -95,5 +112,9 @@ class CanvasView @JvmOverloads constructor(
             pathList.removeLast()
         }
         invalidate()
+    }
+
+    fun setOnCollisionListener(listener: OnCollisionListener) {
+        onCollisionListener = listener
     }
 }
