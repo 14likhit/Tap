@@ -3,6 +3,8 @@ package com.test.myapplication.ui.task2
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.test.myapplication.R
 import com.test.myapplication.base.BaseActivity
 import com.test.myapplication.data.Task2Image
@@ -65,6 +67,21 @@ class Task2Activity : BaseActivity() {
         dataBinding.task2ImageListRV.apply {
             adapter = task2ListAdapter
         }
+
+        dataBinding.task2ImageListRV.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0) {
+                    val visibleThreshold = 2
+                    val layoutManager =
+                        dataBinding.task2ImageListRV.layoutManager as GridLayoutManager
+                    val lastItem = layoutManager.findLastCompletelyVisibleItemPosition()
+                    val currentTotalCount = layoutManager.itemCount
+                    if (currentTotalCount <= lastItem + visibleThreshold) {
+                        task2ViewModel.getImages()
+                    }
+                }
+            }
+        })
 
         task2ViewModel.getImages()
     }
