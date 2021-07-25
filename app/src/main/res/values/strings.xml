@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Tap</string>
+    <string name="task_1">Task 1</string>
+    <string name="task_2">Task 2</string>
 </resources>
