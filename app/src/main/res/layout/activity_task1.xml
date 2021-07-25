@@ -47,6 +47,7 @@
             app:layout_constraintHorizontal_bias="1" />
 
         <com.test.myapplication.utils.CanvasView
+            android:id="@+id/canvasView"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_0dp"
             app:layout_constraintBottom_toTopOf="@id/squareBtn"
