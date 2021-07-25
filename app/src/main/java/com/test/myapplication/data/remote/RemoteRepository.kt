@@ -5,7 +5,7 @@ import com.test.myapplication.data.schema.Task2ImageSchema
 
 interface RemoteRepository {
 
-    suspend fun getTrendingGitRepositories(
+    suspend fun getImages(
         clientId: String,
         orderBy: String,
         page: Int

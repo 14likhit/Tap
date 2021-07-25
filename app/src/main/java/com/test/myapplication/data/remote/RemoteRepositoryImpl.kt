@@ -26,7 +26,7 @@ class RemoteRepositoryImpl(
     }
 
 
-    override suspend fun getTrendingGitRepositories(
+    override suspend fun getImages(
         clientId: String,
         orderBy: String,
         page: Int
