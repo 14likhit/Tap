@@ -14,6 +14,8 @@ class Task1Activity : BaseActivity() {
         super.onCreate(savedInstanceState)
         dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_task1)
 
+        setupToolbar(getString(R.string.task_1),true)
+
         dataBinding.circleBtn.setOnClickListener {
             dataBinding.canvasView.drawCircle()
         }

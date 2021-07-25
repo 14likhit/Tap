@@ -27,7 +27,8 @@
                 app:layout_constraintEnd_toStartOf="@id/toolbar_title_text_view"
                 app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/toolbar_title_text_view" />
+                app:layout_constraintTop_toTopOf="@id/toolbar_title_text_view"
+                app:srcCompat="@drawable/ic_back" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/toolbar_title_text_view"

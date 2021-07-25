@@ -14,10 +14,10 @@
         tools:context=".ui.task1.Task1Activity">
 
         <include
-            android:id="@+id/toolbarLayout"
+            android:id="@+id/toolbar"
             layout="@layout/toolbar_default"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="?android:attr/actionBarSize" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/undoBtn"
@@ -54,7 +54,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbarLayout"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintVertical_bias="0" />
 
 

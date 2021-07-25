@@ -64,6 +64,9 @@ class Task2Activity : BaseActivity() {
     }
 
     private fun setView() {
+
+        setupToolbar(getString(R.string.task_2),true)
+
         dataBinding.task2ImageListRV.apply {
             adapter = task2ListAdapter
         }

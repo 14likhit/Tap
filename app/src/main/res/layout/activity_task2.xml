@@ -15,10 +15,10 @@
         tools:context=".ui.task2.Task2Activity">
 
         <include
-            android:id="@+id/toolbarLayout"
+            android:id="@+id/toolbar"
             layout="@layout/toolbar_default"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="?android:attr/actionBarSize" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/task2ImageListRV"
