@@ -9,7 +9,7 @@ import retrofit2.http.Query
  */
 interface ApiService {
 
-    @GET("page")
+    @GET("photos")
     suspend fun getImages(
         @Query("client_id") clientId: String,
         @Query("order_by") orderBy: String,

@@ -36,7 +36,7 @@ class Task2ViewModel(private val remoteRepositoryImpl: RemoteRepositoryImpl) : V
     fun getImages() {
         loadingData.value = true
         viewModelScope.launch {
-            when (val response = remoteRepositoryImpl.getImages(CLIENT_ID, ORDER_BY, page++)) {
+            when (val response = remoteRepositoryImpl.getImages(CLIENT_ID, ORDER_BY, page+1)) {
                 is BaseResponse.Success -> {
                     imageListMutableLiveData.value = mapTask2ImageSchemaToTask2Image(response.data)
                     loadingData.value = false

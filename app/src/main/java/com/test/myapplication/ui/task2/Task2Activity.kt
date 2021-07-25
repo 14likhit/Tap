@@ -66,6 +66,6 @@ class Task2Activity : BaseActivity() {
             adapter = task2ListAdapter
         }
 
-        task2ViewModel.getImageListLiveData()
+        task2ViewModel.getImages()
     }
 }
