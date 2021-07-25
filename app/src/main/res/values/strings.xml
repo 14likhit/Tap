@@ -2,4 +2,6 @@
     <string name="app_name">Tap</string>
     <string name="task_1">Task 1</string>
     <string name="task_2">Task 2</string>
+    <string name="something_went_wrong">Something went wrong!</string>
+    <string name="retry">Retry</string>
 </resources>

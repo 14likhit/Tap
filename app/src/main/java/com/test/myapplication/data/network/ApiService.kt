@@ -1,6 +1,7 @@
 package com.test.myapplication.data.network
 
 import com.test.myapplication.data.schema.Task2ImageSchema
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -14,6 +15,6 @@ interface ApiService {
         @Query("client_id") clientId: String,
         @Query("order_by") orderBy: String,
         @Query("page") page: Int
-    ): List<Task2ImageSchema>
+    ): Response<List<Task2ImageSchema>>
 
 }

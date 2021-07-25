@@ -5,6 +5,7 @@ import com.test.myapplication.base.data.baseApiCall
 import com.test.myapplication.data.network.ApiService
 import com.test.myapplication.data.schema.Task2ImageSchema
 import kotlinx.coroutines.CoroutineDispatcher
+import retrofit2.Response
 
 class RemoteRepositoryImpl(
     private val service: ApiService,
@@ -30,7 +31,7 @@ class RemoteRepositoryImpl(
         clientId: String,
         orderBy: String,
         page: Int
-    ): BaseResponse<List<Task2ImageSchema>> {
+    ): BaseResponse<Response<List<Task2ImageSchema>>> {
         return baseApiCall(ioDispatcher) {
             service.getImages(clientId, orderBy, page)
         }

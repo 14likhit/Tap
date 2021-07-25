@@ -30,5 +30,18 @@
             tools:itemCount="20"
             tools:listitem="@layout/item_task2_image" />
 
+        <ProgressBar
+            android:id="@+id/loadingPB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <include
+            android:id="@+id/errorLayout"
+            layout="@layout/layout_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

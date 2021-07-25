@@ -1,12 +1,14 @@
 package com.test.myapplication.ui.task2
 
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.test.myapplication.R
 import com.test.myapplication.base.BaseActivity
+import com.test.myapplication.base.data.ErrorData
 import com.test.myapplication.data.Task2Image
 import com.test.myapplication.data.network.ApiClient
 import com.test.myapplication.data.network.ApiService
@@ -37,6 +39,7 @@ class Task2Activity : BaseActivity() {
                 Dispatchers.IO
             )!!
         )
+        showError(false, null)
 
         task2ViewModel =
             ViewModelProvider(this, task2ViewModeFactory).get(Task2ViewModel::class.java)
@@ -55,17 +58,23 @@ class Task2Activity : BaseActivity() {
         })
 
         task2ViewModel.getErrorLiveData().observe(this, {
-
+            val error = it
+            if (error != null) {
+                showError(true, error)
+            }
         })
 
         task2ViewModel.getLoadingData().observe(this, {
-
+            val loading = it
+            if (loading != null) {
+                showLoading(loading)
+            }
         })
     }
 
     private fun setView() {
 
-        setupToolbar(getString(R.string.task_2),true)
+        setupToolbar(getString(R.string.task_2), true)
 
         dataBinding.task2ImageListRV.apply {
             adapter = task2ListAdapter
@@ -80,12 +89,37 @@ class Task2Activity : BaseActivity() {
                     val lastItem = layoutManager.findLastCompletelyVisibleItemPosition()
                     val currentTotalCount = layoutManager.itemCount
                     if (currentTotalCount <= lastItem + visibleThreshold) {
-                        task2ViewModel.getImages()
+                        getImages()
                     }
                 }
             }
         })
 
+        getImages()
+    }
+
+    private fun getImages() {
         task2ViewModel.getImages()
+    }
+
+    private fun showLoading(loading: Boolean) {
+        if (loading) {
+            dataBinding.loadingPB.visibility = View.VISIBLE
+        } else {
+            dataBinding.loadingPB.visibility = View.GONE
+        }
+    }
+
+    private fun showError(isError: Boolean, errorData: ErrorData?) {
+        if (isError && errorData != null) {
+            dataBinding.errorLayout.errorTV.text = errorData.message
+            dataBinding.errorLayout.retryBtn.setOnClickListener {
+                getImages()
+                showError(false, null)
+            }
+            dataBinding.errorLayout.errorRootLL.visibility = View.VISIBLE
+        } else {
+            dataBinding.errorLayout.errorRootLL.visibility = View.GONE
+        }
     }
 }
